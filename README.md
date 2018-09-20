@@ -38,11 +38,11 @@ In VMWare Workstation go to: **Edit this Virutal Machine settings** -> **Options
 
 Start the VM, go to ```win-linux-setup/guest-side-conf-scripts``` and do ```sudo python fstab-conf.py``` **!! USE PYTHON 3**
 
-# Setup your Network Interfaces on your Guest
+# Setup up Network Interfaces on your Guest
 ```nmtui```
 Set up your host-only interface ipv4 address to 192.168.56.3/24
 
-# Setup your Network Interface on your Host
+# Setup up Network Interface on your Host
 **Control Panel** -> **Network and Sharing Center** -> **Change adapter settings** -> right-click on ***your host-only interface*** -> **Properties** -> **Internet Protocol Version 4 (TCP/IPv4)** -> set it like on picture belown
 
 ![](media/network_configuration.jpg)
