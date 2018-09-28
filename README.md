@@ -47,6 +47,27 @@ Set up your host-only interface ipv4 address to 192.168.56.3/24
 
 ![](media/network_configuration.jpg)
 
+# Set Up SSH Server on guest-side **(for easier troubleshoting)**
+* Install OpenSSH and enable it like it' s described on your distro' s wiki (*https://wiki.archlinux.org/index.php/Secure_Shell*)
+* edit ```/etc/ssh/sshd_config``` \
+in line *13*  change ```port``` to something different that 22 **(eg. 2137)** \
+in line *15* change ```ListenAddress``` to **192.168.56.3** \
+in line *57* change ```PasswordAuthentication``` to **no** \
+in line *32* change ```PermitRootLogin``` to **no**.
+
+* Generate SSH Keys \
+```ssh-keygen``` and enter the passphrase \
+go to ```~/.ssh/``` and rename **id_rsa.pub** to **authorized_keys** \
+Transfer ```id_rsa``` to your host by ```cp id_rsa /c/...```
+
+# Set Up PuTTY on Host-side
+* [Download](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi) PuTTY
+* Open ```puttygen``` \
+**Conversions** -> **Import Key** -> **Save private key**
+* Edit ```.\host-side-scripts\startup.bat``` \
+in line *4* ***enter path to your .ppk file***.
+* Now you can easily connect to your VM
+
 
 # Credits
 * [@gynvael](https://github.com/gynvael) for providing RPC Interface
