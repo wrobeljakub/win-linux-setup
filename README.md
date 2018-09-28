@@ -50,10 +50,10 @@ Set up your host-only interface ipv4 address to 192.168.56.3/24
 # Set Up SSH Server on guest-side **(for easier troubleshoting)**
 * Install OpenSSH and enable it like it' s described on your distro' s wiki (*https://wiki.archlinux.org/index.php/Secure_Shell*)
 * edit ```/etc/ssh/sshd_config``` \
-in line *13*  change ```port``` to something different that 22 **(eg. 2137)** \
-in line *15* change ```ListenAddress``` to **192.168.56.3** \
-in line *57* change ```PasswordAuthentication``` to **no** \
-in line *32* change ```PermitRootLogin``` to **no**.
+in line ***13***  change ```port``` to something different that 22 **(eg. 2137)** \
+in line ***15*** change ```ListenAddress``` to **192.168.56.3** \
+in line ***57*** change ```PasswordAuthentication``` to **no** \
+in line ***32*** change ```PermitRootLogin``` to **no**.
 
 * Generate SSH Keys \
 ```ssh-keygen``` and enter the passphrase \
@@ -61,13 +61,38 @@ go to ```~/.ssh/``` and rename **id_rsa.pub** to **authorized_keys** \
 Transfer ```id_rsa``` to your host by ```cp id_rsa /c/...```
 
 # Set Up PuTTY on Host-side
-* [Download](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi) PuTTY
+* [Download](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi) PuTTY or ```choco install putty```
 * Open ```puttygen``` \
 **Conversions** -> **Import Key** -> **Save private key**
 * Edit ```.\host-side-scripts\startup.bat``` \
-in line *4* ***enter path to your .ppk file***.
+in line ***4*** ***enter path to your .ppk file***.
 * Now you can easily connect to your VM
+# Install VcXsrv
+* [Download](https://sourceforge.net/projects/vcxsrv/)
+* ```choco install vcsrv```
 
+# Configure all host-side scripts
+* go to ```.\host-side-scripts``` \
+In line *3* in ```l-cmd.bat``` enter path to this repo cloned. \
+In line *4* in ```startup.bat``` enter PATH to your private key in **.ppk** format. \
+In line *5* in ```startup.bat``` enter path to this repo cloned. \
+In line *3* in ```vm-start.bat``` and ```vm-stop.bat``` add path to **.vmx** file of your VM.
+
+* In ```shell:startup``` create link to ```repo\host-side-scripts\startup.bat```
+
+# Configure iface
+* Edit ```./RPC/iface.cfg``` \
+in line ***2*** enter secure password \
+in line ***3*** enter path to *home* directory on guest-side \
+in line ***6*** enter path to your **terminal emulator** \
+Use same iface.cfg both on guest and host side.
+
+# Add iface to autostart on guest-side
+* correct ```guest-side-scripts\startup.sh```
+* Install **cron** *check your distro 's wiki* *(for arch it' s ```pacman -S cronie```)*
+* ```crontab -e``` \
+```@reboot *PATH to startup.sh*``` \
+***ctrl+o*** ***ctrl+x***
 
 # Credits
 * [@gynvael](https://github.com/gynvael) for providing RPC Interface
