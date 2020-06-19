@@ -1,6 +1,6 @@
 # iface
 ![](media/preview.jpg)
-This is my implementation of [@gynvael](https://github.com/gynvael)'s Windows - host + Debian - guest setup using a VMWare Workstation 15. I faced some issues while following [@SynneK1337](https://github.com/SynneK1337)'s guide, so I decided to create a new and complete guide. I hope that somebody will wind it useful.
+This is my implementation of [@gynvael](https://github.com/gynvael)'s Windows - host + Debian - guest setup using a VMWare Workstation 15. I faced some issues while following [@SynneK1337](https://github.com/SynneK1337)'s guide, so I decided to create a new and complete guide. I hope that somebody will find it useful.
 
 **WARNING**: The Windows/GNU+Linux iface by is EXPERIMENTAL and has nothing to do with good coding, security, etc. **USE AT YOUR OWN RISK**.
 
@@ -87,7 +87,7 @@ Correct variables values on top of every file located in that directory. \
 * Edit ```REPO/RPC/iface.cfg``` \
 in line ***2*** enter random string \
 in line ***3*** enter path to *home* directory on guest-side \
-in line ***6*** enter path to your **terminal emulator** \
+in line ***6*** enter path to your *terminal emulator* \
 Use same iface.cfg both on guest and host side.
 
 # Add iface to autostart on guest-side
@@ -102,7 +102,7 @@ add line
 ```@reboot *PATH to startup.sh*```
 
 # Add iface to autostart on host-side
-* Go to ```shell:startup``` via ```win+R``` and create link to ```REPO\host-side-scripts\startup.bat```.
+* Go to ```shell:startup``` using ```win+R``` shortcut and create link to ```REPO\host-side-scripts\startup.bat```.
 
 
 # Credits
