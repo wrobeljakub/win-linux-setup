@@ -1,5 +1,6 @@
 @echo off
 
-set %repopath%="Enter path to win-linux-setup directory"
+set repopath=c:\etc\win-linux-setup
+set pythonpath=c:\python27\python.exe
 
-C:\python27\python.exe %repopath%\RPC\if-l-cmd.py %cd%
+%pythonpath% %repopath%\RPC\if-l-cmd.py %cd%

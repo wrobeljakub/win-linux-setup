@@ -1,6 +1,6 @@
 @echo off
 
-set %VMPATH%="Enter path to .vmx file here"
+set vmpath=C:\vms\Debian\Debian.vmx
 
-"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start %VMPATH% nogui
+"C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe" start %vmpath% nogui
 echo "VM started."

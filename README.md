@@ -1,5 +1,5 @@
 # iface
-![](media/preview.jpg)
+![](media/preview.png)
 Rather bad Windows/Linux RPC interface specialized for a Windows-host/GNU+Linux-guest configuration.
 
 **WARNING**: The Windows/GNU+Linux iface by is EXPERIMENTAL and has nothing to do with good coding, security, etc. **USE AT YOUR OWN RISK**.
