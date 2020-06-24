@@ -29,7 +29,7 @@ git clone https://github.com/jakubwrobel/win-linux-setup.git
 # Attaching host physical drivers to Virtual Machine
 Make sure your on 4.x kernel or newer: ```uname -r```\
 ```sudo poweroff```
-In VMWare Workstation go to: **Edit this Virutal Machine settings** -> **Options** -> **Shared Folders** -> Check **Always enabled** -> **Add** -> Add the root folder of every partition you want to attach and name it **DRIVE_C**, **DRIVE_D** etc.
+In VMWare Workstation go to: **Edit this Virutal Machine settings** -> **Options** -> **Shared Folders** -> Check **Always enabled** -> **Add** -> Add the root folder of every partition you want to attach and name it **DRIVE_C**, **DRIVE_D** etc
 
 ![](media/disk_attaching.jpg)
 ![](media/disks_attached.jpg)
@@ -44,7 +44,7 @@ In ```/etc/fstab``` add line/lines ```.host:DRIVE_x /mnt/x fuse.vmhgfs-fuse rw,a
 
 * Enable NetworkManger service ```sudo systemctl enable NetworkManger```, disable other networking services e.g. ```dhcpcd.service```, ```networking.service``` and remove all interfaces starting with ``ens`` from ```/etc/network/interfaces``` file.
 * ```sudo reboot```
-* Set up your host-only interface ipv4 address to 192.168.56.3/24 using ```nmtui```. 
+* Set up your host-only interface ipv4 address to 192.168.56.3/24 using ```nmtui```
 
 # Set up Network Interface on your Host
 **Control Panel** -> **Network and Sharing Center** -> **Change adapter settings** -> right-click on ***your host-only interface*** -> **Properties** -> **Internet Protocol Version 4 (TCP/IPv4)** -> set it like on picture belown
@@ -55,20 +55,15 @@ In ```/etc/fstab``` add line/lines ```.host:DRIVE_x /mnt/x fuse.vmhgfs-fuse rw,a
 * Install OpenSSH and enable it ```sudo systemctl enable ssh```
 * edit ```/etc/ssh/sshd_config``` \
 in line ***13***  change ```port``` to something different that 22 **(eg. 2137)** \
-in line ***15*** change ```ListenAddress``` to **192.168.56.3** \
 in line ***56*** change ```PasswordAuthentication``` to **no** \
-in line ***32*** change ```PermitRootLogin``` to **no**.
+in line ***32*** change ```PermitRootLogin``` to **no**
 
-* Generate SSH Keys \
-```ssh-keygen``` and enter the passphrase \
-go to ```~/.ssh/``` and rename **id_rsa.pub** to **authorized_keys** \
-Transfer ```id_rsa``` to your host by ```cp id_rsa /c/...```
-
-# Set Up PuTTY on Host-side
-* [Download](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.70-installer.msi) PuTTY or ```choco install putty```
-* Open ```PuTTYgen``` \
-**Conversions** -> **Import Key** -> **Save private key**
-* Now you can easily connect to your VM
+# Set Up SSH on Host-side
+* Open ```cmd.exe``` \
+* Generate SSH key with ```ssh-keygen``` \
+* ```mkdir .ssh``` in your *$HOME* directory \
+* Transfer ```id_rsa.pub``` to guest using ```cp /c/Users/your_windows_username/.ssh/id_rsa.pub ~/.ssh/authorized_keys``` \
+* Now you can connect to your VM by typing ```ssh -p your_port your_linux_username@192.168.56.3```
 
 # Install VcXsrv
 * [Download](https://sourceforge.net/projects/vcxsrv/)
@@ -88,7 +83,7 @@ Correct variables values on top of every file located in that directory. \
 in line ***2*** enter random string \
 in line ***3*** enter path to *home* directory on guest-side \
 in line ***6*** enter path to your *terminal emulator* \
-Use same iface.cfg both on guest and host side.
+Use same iface.cfg both on guest and host side
 
 # Add iface to autostart on guest-side
 * Edit ```REPO/guest-side-scripts/startup.sh```
@@ -102,7 +97,7 @@ add line
 ```@reboot *PATH to startup.sh*```
 
 # Add iface to autostart on host-side
-* Go to ```shell:startup``` using ```win+R``` shortcut and create link to ```REPO\host-side-scripts\startup.bat```.
+* Go to ```shell:startup``` using ```win+R``` shortcut and create link to ```REPO\host-side-scripts\startup.bat```
 
 
 # Credits
